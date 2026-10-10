@@ -643,6 +643,3 @@ h1, h2, h3, p { overflow-wrap: break-word; }
 .card-label-white { display: none; }
 :root[data-cards="white"] .card-label-black { display: none; }
 :root[data-cards="white"] .card-label-white { display: block; }
-
-/* Header brand icon (SVG) */
-.brand-icon { width: 16px; height: 16px; flex: 0 0 auto; color: var(--accent); }
