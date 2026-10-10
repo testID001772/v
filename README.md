@@ -4,7 +4,7 @@ A static HTML/CSS/JavaScript site for BT Panel with Home, About, FAQ, and Contac
 
 ## Files
 
-- `index.html`, `about.html`, `faq.html`, `contact.html` — page markup
+- `index.html`, `about.html`, `faq.html`, `contact.html`, `404.html` — page markup
 - `styles.css` — shared responsive design, header audio/volume control and the black/white theme
 - `site.js` — Discord invite configuration, launch countdown, background-music playback and volume, hero-video reduced-motion behavior, and client-side Contact form confirmation
 - `assets/bt-panel-hero-bg.mp4` — 5-second, 1280×720 silent AI-generated background loop

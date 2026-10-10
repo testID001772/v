@@ -1,0 +1,9 @@
+{
+  "routes": [
+    { "path": "/", "title": "Coming Soon — BT Panel" },
+    { "path": "/about.html", "title": "About — BT Panel" },
+    { "path": "/faq.html", "title": "FAQ — BT Panel" },
+    { "path": "/contact.html", "title": "Contact — BT Panel" },
+    { "path": "/404.html", "title": "Page not found — BT Panel" }
+  ]
+}

@@ -555,3 +555,54 @@ h1, h2, h3, p { overflow-wrap: break-word; }
   :root { --chrome-bg: rgba(8, 11, 12, .96); }
   :root[data-cards="white"] { --chrome-bg: rgba(247, 249, 251, .98); }
 }
+
+/* =====================================================================
+   Main navigation + 404 page
+   ===================================================================== */
+.site-nav { flex: 1 1 auto; min-width: 0; }
+.nav-list {
+  display: flex; align-items: center; justify-content: center; gap: 28px;
+  margin: 0; padding: 0; list-style: none;
+}
+.nav-link {
+  position: relative; display: inline-block; padding: 6px 1px;
+  color: var(--chrome-muted); text-decoration: none;
+  font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  transition: color .2s ease;
+}
+.nav-link:hover, .nav-link:focus-visible { color: var(--chrome-text); }
+.nav-link[aria-current="page"] { color: var(--chrome-text); }
+.nav-link[aria-current="page"]::after {
+  position: absolute; right: 0; bottom: -1px; left: 0; height: 2px;
+  border-radius: 2px; background: var(--chrome-focus); content: '';
+}
+
+/* 404 */
+.notfound-section {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: clamp(24px, 5vw, 60px); padding: 40px 36px;
+  border: 1px solid var(--card-border); border-radius: 16px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255,255,255,.18);
+  -webkit-backdrop-filter: var(--card-blur); backdrop-filter: var(--card-blur);
+}
+.notfound-code {
+  margin: 0; color: var(--card-text); font-family: var(--display);
+  font-size: clamp(4.5rem, 13vw, 9rem); font-weight: 500; line-height: .9;
+  letter-spacing: -.075em; font-variant-numeric: tabular-nums;
+}
+.notfound-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+.notfound-links .button-link { padding: 13px 18px; background: var(--card-field); }
+
+@media (max-width: 960px) {
+  .header-inner { flex-wrap: wrap; gap: 14px; }
+  .site-nav { order: 3; flex-basis: 100%; }
+  .nav-list { justify-content: flex-start; gap: 22px; }
+}
+@media (max-width: 560px) {
+  .nav-list { gap: 16px; }
+  .nav-link { font-size: .66rem; letter-spacing: .08em; }
+  .notfound-section { flex-direction: column; align-items: flex-start; padding: 28px 22px; }
+  .notfound-links { justify-content: flex-start; }
+  .notfound-links .button-link { padding: 11px 14px; font-size: .78rem; }
+}
