@@ -656,3 +656,10 @@ h1, h2, h3, p { overflow-wrap: break-word; }
 .sound-toggle:hover, .sound-toggle[aria-pressed="true"] {
   background: rgba(255, 255, 255, .16); border: 0; color: var(--white);
 }
+
+/* Live music embed (YouTube player on the homepage) */
+.live-music { padding: 56px 0 64px; border-top: 1px solid var(--line); }
+.live-music-inner { max-width: var(--page); margin: 0 auto; padding: 0 24px; }
+.live-music-title { margin: 8px 0 22px; font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -.02em; }
+.live-music-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.22); background: #000; }
+.live-music-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
