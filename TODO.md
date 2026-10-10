@@ -16,7 +16,7 @@
 - [x] `manus-routes.json` restored: the route manifest the README documents now lists all five pages.
 - [x] Every page carries a Home / About / FAQ / Contact nav, so no page is orphaned, and the current page is marked with `aria-current="page"`.
 - [x] Themed `404.html` for dead links, served automatically by GitHub Pages on the `liekg.qzz.io` domain.
-- [x] Discord invite is not a dead link: one `DISCORD_INVITE` constant at the top of `site.js` drives every Discord link on every page, with a console warning while the placeholder is in place.
+- [x] Discord is closed for now: every page shows a non-clickable “Discord coming soon” footer label (no invite link, no `DISCORD_INVITE` constant). See README to reopen it later.
 - [x] Footer on all four pages carries an inline Discord SVG icon plus “Owner @lie_kg”, linking to the invite in a new tab with `rel="noopener"`.
 - [x] All six changes are applied consistently to Home, About, FAQ and Contact — shared header controls, footer owner link, theme and volume behavior.
 - [x] Inline SVGs use `fill="currentColor"` and a theme-aware ink variable, so icons flip with the white/black card theme; the header/footer chrome follows the same theme.
