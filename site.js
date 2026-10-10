@@ -3,11 +3,6 @@
      Site configuration
      =================================================================== */
 
-  /* Discord invite — replace the placeholder below with the real invite
-     (for example https://discord.gg/AbC123XyZ). This one constant updates
-     every Discord link on every page. */
-  const DISCORD_INVITE = 'https://discord.gg/REPLACE-ME';
-
   /* Background-music level used the first time somebody visits (0–1).
      After that the visitor's own slider position is restored. */
   const DEFAULT_VOLUME = 0.35;
@@ -21,17 +16,6 @@
   const writeStored = (key, value) => {
     try { window.localStorage.setItem(key, value); } catch { /* preference just won't persist */ }
   };
-
-  /* ------------------------------------------------------------------
-     Discord links (footer owner link on every page)
-     ------------------------------------------------------------------ */
-  const discordLinks = document.querySelectorAll('[data-discord-invite]');
-  if (discordLinks.length) {
-    discordLinks.forEach((link) => { link.href = DISCORD_INVITE; });
-    if (/REPLACE-ME/i.test(DISCORD_INVITE) && typeof console !== 'undefined') {
-      console.warn('[BT Panel] The Discord invite is still the placeholder. Set DISCORD_INVITE at the top of site.js.');
-    }
-  }
 
   /* ===================================================================
      Hero background video

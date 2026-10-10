@@ -497,6 +497,9 @@ h1, h2, h3, p { overflow-wrap: break-word; }
 .footer-owner-handle { color: var(--chrome-text); font-weight: 700; letter-spacing: .01em; }
 .footer-owner:hover, .footer-owner:focus-visible { color: var(--chrome-text); }
 .footer-owner:hover .footer-owner-icon { color: #5865f2; }
+.footer-owner.is-soon { cursor: default; }
+.footer-owner.is-soon:hover { color: var(--chrome-muted); }
+.footer-owner.is-soon:hover .footer-owner-icon { color: currentColor; }
 
 /* Header volume control */
 .volume-control { display: flex; align-items: center; gap: 7px; color: var(--icon-ink); }
