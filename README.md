@@ -8,7 +8,6 @@ A static HTML/CSS/JavaScript site for BT Panel with Home, About, FAQ, and Contac
 - `styles.css` — shared responsive design, header audio/volume control and the black/white theme
 - `site.js` — launch countdown, background-music playback and volume, hero-video reduced-motion behavior, and client-side Contact form confirmation
 - `assets/bt-panel-hero-bg.mp4` — 5-second, 1280×720 silent AI-generated background loop
-- `assets/bt-panel-ambient.mp3` — one continuous 25-minute ambient loop assembled from six sections with gentle crossfades
 - `images/bt-panel-logo.png` — BT Panel logo icon
 - `manus-routes.json` — route manifest for the managed preview
 
