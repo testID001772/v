@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+  <meta name="description" content="Follow the live countdown to the planned BT Panel launch.">
+  <title>Coming Soon — BT Panel</title>
+  <link rel="icon" type="image/png" href="images/bt-panel-logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script>try{var c=localStorage.getItem('bt-panel-card-style');document.documentElement.setAttribute('data-cards',c==='white'?'white':'black');}catch(e){document.documentElement.setAttribute('data-cards','black');}</script>
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true">
+    <video id="hero-video" class="bg-video" autoplay muted loop playsinline preload="auto" tabindex="-1">
+      <source src="assets/bt-panel-hero-bg.mp4" type="video/mp4">
+    </video>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="BT Panel home">
+        <img class="brand-logo" src="images/bt-panel-logo.png" alt="" width="42" height="42">
+        <span class="brand-name">BT Panel</span>
+      </a>
+      <div class="header-actions">
+        <button class="card-toggle" id="card-toggle" type="button" aria-label="Switch cards to white" aria-pressed="false"><span data-card-label>Cards: Black</span></button>
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Turn background music on" aria-pressed="false"><span data-sound-label>Music off</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content page-width">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> A new BT Panel experience is taking shape</p>
+          <p class="hero-product">BT PANEL <span>·</span> COMING SOON</p>
+          <h1 id="hero-title">The next era<br>of game hosting<br>is <em>almost here.</em></h1>
+          <p class="hero-description">BT Panel is a new control center for game server hosting. We’re building straightforward tools for hosts, communities, and developers to run the worlds they create.</p>
+        </div>
+
+        <aside class="launch-card" aria-label="Launch countdown">
+          <div class="card-topline">
+            <span class="card-kicker">COUNTDOWN TO LAUNCH</span>
+            <span class="launch-date">07 <span>/</span> MAR <span>/</span> 2027</span>
+          </div>
+          <div class="countdown" id="countdown" role="timer" aria-label="Countdown to March 7, 2027">
+            <div class="time-unit"><span id="days" class="time-value">00</span><span class="time-label">Days</span></div>
+            <span class="time-separator" aria-hidden="true">:</span>
+            <div class="time-unit"><span id="hours" class="time-value">00</span><span class="time-label">Hours</span></div>
+            <span class="time-separator" aria-hidden="true">:</span>
+            <div class="time-unit"><span id="minutes" class="time-value">00</span><span class="time-label">Minutes</span></div>
+            <span class="time-separator" aria-hidden="true">:</span>
+            <div class="time-unit"><span id="seconds" class="time-value">00</span><span class="time-label">Seconds</span></div>
+          </div>
+          <p id="launch-live" class="launch-live" aria-live="polite"></p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner page-width">
+      <a class="footer-brand" href="index.html" aria-label="BT Panel home"><img class="brand-logo" src="images/bt-panel-logo.png" alt="" width="34" height="34"><span>BT Panel</span></a>
+      <p class="footer-copy">© 2026 BT Panel. All rights reserved.</p>
+    </div>
+  </footer>
+  <audio id="background-music" src="assets/bt-panel-ambient.mp3" loop preload="none" playsinline></audio>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+  <meta name="description" content="Learn about BT Panel, a forthcoming game server management dashboard built for hosts and communities.">
+  <title>About — BT Panel</title>
+  <link rel="icon" type="image/png" href="images/bt-panel-logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script>try{var c=localStorage.getItem('bt-panel-card-style');document.documentElement.setAttribute('data-cards',c==='white'?'white':'black');}catch(e){document.documentElement.setAttribute('data-cards','black');}</script>
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true">
+    <video id="hero-video" class="bg-video" autoplay muted loop playsinline preload="auto" tabindex="-1">
+      <source src="assets/bt-panel-hero-bg.mp4" type="video/mp4">
+    </video>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="BT Panel home"><img class="brand-logo" src="images/bt-panel-logo.png" alt="" width="42" height="42"><span class="brand-name">BT Panel</span></a>
+      <div class="header-actions">
+        <button class="card-toggle" id="card-toggle" type="button" aria-label="Switch cards to white" aria-pressed="false"><span data-card-label>Cards: Black</span></button>
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Turn background music on" aria-pressed="false"><span data-sound-label>Music off</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="inner-page page-width">
+    <section class="page-intro" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> The thinking behind the panel</p>
+      <h1 id="page-title">Less overhead.<br><em>More game.</em></h1>
+      <p class="page-lede">BT Panel is being built to make game server management clearer, more reliable, and easier to grow—from a first world to a thriving community.</p>
+    </section>
+
+    <section class="manifesto" aria-label="Our mission and vision">
+      <article class="manifesto-item">
+        <span class="manifesto-index">01 / MISSION</span>
+        <div>
+          <h2>Make hosting feel effortless.</h2>
+          <p>We want to take repetitive setup and maintenance out of the way so hosts and developers can spend more time supporting the people behind their servers.</p>
+        </div>
+      </article>
+      <article class="manifesto-item">
+        <span class="manifesto-index">02 / VISION</span>
+        <div>
+          <h2>Built on what works. Ready for what’s next.</h2>
+          <p>Our vision is one approachable place to configure, monitor, and grow the game worlds you run—without losing control of your infrastructure.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="numbers-section" aria-labelledby="numbers-title">
+      <div class="section-heading">
+        <p class="eyebrow">Built around the operator</p>
+        <h2 id="numbers-title">The essentials,<br>without the clutter.</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-item"><span class="stat-value">PLAN</span><span class="stat-label">Know what needs attention.</span></div>
+        <div class="stat-item"><span class="stat-value">RUN</span><span class="stat-label">Manage your servers in one place.</span></div>
+        <div class="stat-item"><span class="stat-value">GROW</span><span class="stat-label">Scale as your community grows.</span></div>
+        <div class="stat-item"><span class="stat-value">OWN</span><span class="stat-label">Keep control of your setup.</span></div>
+      </div>
+    </section>
+
+    <section class="page-cta" aria-label="Launch countdown">
+      <p>Ready when you are.</p>
+      <a href="index.html" class="button-link">View launch countdown</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner page-width">
+      <a class="footer-brand" href="index.html" aria-label="BT Panel home"><img class="brand-logo" src="images/bt-panel-logo.png" alt="" width="34" height="34"><span>BT Panel</span></a>
+      <p class="footer-copy">© 2026 BT Panel. All rights reserved.</p>
+    </div>
+  </footer>
+  <audio id="background-music" src="assets/bt-panel-ambient.mp3" loop preload="none" playsinline></audio>
+</body>
+</html>

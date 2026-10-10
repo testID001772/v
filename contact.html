@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0c">
+  <meta name="description" content="Get in touch with the BT Panel team and find out when community channels open.">
+  <title>Contact — BT Panel</title>
+  <link rel="icon" type="image/png" href="images/bt-panel-logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script>try{var c=localStorage.getItem('bt-panel-card-style');document.documentElement.setAttribute('data-cards',c==='white'?'white':'black');}catch(e){document.documentElement.setAttribute('data-cards','black');}</script>
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true">
+    <video id="hero-video" class="bg-video" autoplay muted loop playsinline preload="auto" tabindex="-1">
+      <source src="assets/bt-panel-hero-bg.mp4" type="video/mp4">
+    </video>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="BT Panel home"><img class="brand-logo" src="images/bt-panel-logo.png" alt="" width="42" height="42"><span class="brand-name">BT Panel</span></a>
+      <div class="header-actions">
+        <button class="card-toggle" id="card-toggle" type="button" aria-label="Switch cards to white" aria-pressed="false"><span data-card-label>Cards: Black</span></button>
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Turn background music on" aria-pressed="false"><span data-sound-label>Music off</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="inner-page page-width">
+    <section class="page-intro contact-intro" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> The line is open</p>
+      <h1 id="page-title">Let’s talk<br><em>servers.</em></h1>
+      <p class="page-lede">Have a question or want to discuss a partnership? We’d love to hear from you.</p>
+    </section>
+
+    <section class="contact-layout" aria-label="Contact information and message form">
+      <div class="contact-details">
+        <h2>Stay in the loop.</h2>
+        <div class="contact-detail">
+          <span class="detail-index">01</span>
+          <div><h3>Email</h3><p>Contact address to be announced before launch.</p></div>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-index">02</span>
+          <div><h3>Community</h3><p>Community channels will be shared before launch.</p></div>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-index">03</span>
+          <div><h3>Project updates</h3><p>News and development details will appear here.</p></div>
+        </div>
+        <p class="contact-aside">We’ll be in touch as soon as we can.</p>
+      </div>
+
+      <div class="contact-form-panel">
+        <div class="form-heading"><p class="eyebrow">SEND A MESSAGE</p><p class="form-intro">Drop us a line.</p></div>
+        <form id="contactForm">
+          <div class="form-field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email" maxlength="254" required>
+          </div>
+          <div class="form-field">
+            <label for="message">How can we help?</label>
+            <textarea id="message" name="message" rows="5" maxlength="2000" required></textarea>
+          </div>
+          <button class="button-link form-submit" type="submit">Send message</button>
+          <p id="contact-status" class="form-status" role="status" aria-live="polite"></p>
+          <p class="privacy-note">Preview only. Messages aren’t sent or stored.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner page-width">
+      <a class="footer-brand" href="index.html" aria-label="BT Panel home"><img class="brand-logo" src="images/bt-panel-logo.png" alt="" width="34" height="34"><span>BT Panel</span></a>
+      <p class="footer-copy">© 2026 BT Panel. All rights reserved.</p>
+    </div>
+  </footer>
+  <audio id="background-music" src="assets/bt-panel-ambient.mp3" loop preload="none" playsinline></audio>
+</body>
+</html>
