@@ -647,6 +647,3 @@ h1, h2, h3, p { overflow-wrap: break-word; }
 /* Music toggle icon (SVG music note) */
 .sound-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
 .sound-icon { width: 14px; height: 14px; flex: 0 0 auto; }
-
-/* Music toggle: icon only (label text removed; aria-label keeps it accessible) */
-.sound-toggle { width: 40px; min-width: 40px; min-height: 38px; padding: 8px; }
