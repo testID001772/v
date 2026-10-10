@@ -424,3 +424,134 @@ h1, h2, h3, p { overflow-wrap: break-word; }
   :root[data-cards="white"] { --card-bg: rgba(255, 255, 255, .97); }
   .site-header, .site-footer { background: rgba(8, 11, 12, .96); }
 }
+
+/* =====================================================================
+   Owner / Discord link, inline SVG icons and header volume control
+   All inline SVGs use fill="currentColor", so they follow the
+   white / black card theme automatically.
+   ===================================================================== */
+:root {
+  --icon-ink: #eef2ee;
+  --icon-ink-muted: #9fa9a4;
+  --chrome-bg: rgba(8, 11, 12, .38);
+  --chrome-border: rgba(238, 244, 235, .13);
+  --chrome-text: #f4f5f1;
+  --chrome-muted: #8b948f;
+  --chrome-button: var(--muted);
+  --chrome-button-border: rgba(238, 244, 235, .23);
+  --chrome-focus: #3d7bfd;
+  --chrome-track: rgba(244, 245, 241, .26);
+  --chrome-thumb: #f4f5f1;
+}
+:root[data-cards="white"] {
+  --icon-ink: #0d1116;
+  --icon-ink-muted: #3d4650;
+  --chrome-bg: rgba(247, 249, 251, .84);
+  --chrome-border: rgba(13, 17, 22, .14);
+  --chrome-text: #0d1116;
+  --chrome-muted: #3d4650;
+  --chrome-button: #3d4650;
+  --chrome-button-border: rgba(13, 17, 22, .22);
+  --chrome-focus: #1f55d6;
+  --chrome-track: rgba(13, 17, 22, .26);
+  --chrome-thumb: #0d1116;
+}
+
+/* Chrome (header / footer) follows the white / black theme */
+.site-header, .site-footer {
+  background: var(--chrome-bg);
+  border-color: var(--chrome-border);
+  color: var(--chrome-text);
+  transition: background .25s ease, border-color .25s ease, color .25s ease;
+}
+.brand, .brand-name, .footer-brand, .footer-brand span { color: var(--chrome-text); }
+.footer-copy { color: var(--chrome-muted); }
+.sound-toggle, .card-toggle {
+  color: var(--chrome-button);
+  border-color: var(--chrome-button-border);
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.sound-toggle:hover, .sound-toggle[aria-pressed="true"],
+.card-toggle:hover { border-color: var(--chrome-focus); color: var(--chrome-text); }
+:root[data-cards="white"] .sound-toggle:hover,
+:root[data-cards="white"] .sound-toggle[aria-pressed="true"],
+:root[data-cards="white"] .card-toggle:hover {
+  background: rgba(31, 85, 214, .12);
+  border-color: #1f55d6;
+  color: #0d1116;
+}
+:root[data-cards="white"] .card-toggle[aria-pressed="true"] {
+  background: #0d1116; border-color: #0d1116; color: #fff;
+}
+:root[data-cards="white"] .skip-link { color: #fff; background: #1f55d6; }
+
+/* Footer meta: Discord / owner link + copyright */
+.footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
+.footer-owner {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--chrome-muted); text-decoration: none;
+  font-size: .76rem; line-height: 1.2;
+  transition: color .2s ease;
+}
+.footer-owner-icon { width: 16px; height: 16px; flex: 0 0 auto; color: currentColor; }
+.footer-owner-handle { color: var(--chrome-text); font-weight: 700; letter-spacing: .01em; }
+.footer-owner:hover, .footer-owner:focus-visible { color: var(--chrome-text); }
+.footer-owner:hover .footer-owner-icon { color: #5865f2; }
+
+/* Header volume control */
+.volume-control { display: flex; align-items: center; gap: 7px; color: var(--icon-ink); }
+.volume-icon { width: 15px; height: 15px; flex: 0 0 auto; color: currentColor; opacity: .85; }
+.volume-value {
+  min-width: 32px; color: var(--chrome-muted); font-size: .62rem; font-weight: 700;
+  letter-spacing: .06em; font-variant-numeric: tabular-nums; text-align: right;
+}
+.volume-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 92px; height: 16px; margin: 0; padding: 0;
+  background: transparent; cursor: pointer;
+}
+.volume-slider::-webkit-slider-runnable-track {
+  height: 3px; border-radius: 999px; background: var(--chrome-track);
+}
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 12px; height: 12px; margin-top: -4px;
+  border: 0; border-radius: 50%; background: var(--chrome-thumb);
+}
+.volume-slider::-moz-range-track { height: 3px; border-radius: 999px; background: var(--chrome-track); }
+.volume-slider::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: var(--chrome-thumb); }
+.volume-slider:hover::-webkit-slider-thumb { background: var(--chrome-focus); }
+.volume-slider:hover::-moz-range-thumb { background: var(--chrome-focus); }
+
+@media (max-width: 820px) {
+  .footer-meta { gap: 7px; }
+  .volume-slider { width: 74px; }
+  .volume-value { min-width: 28px; }
+}
+@media (max-width: 560px) {
+  .footer-inner {
+    min-height: 0; padding: 22px 0;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+  }
+  .footer-meta { align-items: flex-start; gap: 7px; }
+  .footer-copy { grid-column: auto; grid-row: auto; margin: 0; font-size: .67rem; }
+  .volume-slider { width: 58px; }
+  .volume-value { display: none; }
+}
+@media (max-width: 400px) {
+  .header-inner { gap: 10px; }
+  .volume-icon { display: none; }
+  .volume-slider { width: 44px; }
+  .card-toggle, .sound-toggle { padding: 7px; font-size: .58rem; }
+  .brand-name { font-size: .9rem; }
+}
+
+/* Keep the chrome readable where blur / transparency is unavailable */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root { --chrome-bg: rgba(8, 11, 12, .92); }
+  :root[data-cards="white"] { --chrome-bg: rgba(247, 249, 251, .96); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root { --chrome-bg: rgba(8, 11, 12, .96); }
+  :root[data-cards="white"] { --chrome-bg: rgba(247, 249, 251, .98); }
+}

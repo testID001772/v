@@ -13,3 +13,9 @@
 - [x] Static implementation remains responsive, accessible, keyboard-friendly, and readable across common screen sizes.
 
 - [x] Use https://pterodactyl.io only as a general design reference while retaining BT Panel’s own name, logo, copy, and assets.
+- [x] Discord invite is not a dead link: one `DISCORD_INVITE` constant at the top of `site.js` drives every Discord link on every page, with a console warning while the placeholder is in place.
+- [x] Footer on all four pages carries an inline Discord SVG icon plus “Owner @lie_kg”, linking to the invite in a new tab with `rel="noopener"`.
+- [x] All six changes are applied consistently to Home, About, FAQ and Contact — shared header controls, footer owner link, theme and volume behavior.
+- [x] Inline SVGs use `fill="currentColor"` and a theme-aware ink variable, so icons flip with the white/black card theme; the header/footer chrome follows the same theme.
+- [x] Footer copyright reads “© 2026 BT Panel.” on every page.
+- [x] Music volume is user-controlled: a keyboard-accessible 0–100% slider in every header, defaulting to 35%, clamped, persisted in local storage and kept in sync across tabs.

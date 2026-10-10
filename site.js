@@ -1,8 +1,41 @@
 (() => {
-  const launchDate = new Date('2027-03-07T00:00:00');
-  const countdown = document.getElementById('countdown');
-  const liveMessage = document.getElementById('launch-live');
+  /* ===================================================================
+     Site configuration
+     =================================================================== */
 
+  /* Discord invite — replace the placeholder below with the real invite
+     (for example https://discord.gg/AbC123XyZ). This one constant updates
+     every Discord link on every page. */
+  const DISCORD_INVITE = 'https://discord.gg/REPLACE-ME';
+
+  /* Background-music level used the first time somebody visits (0–1).
+     After that the visitor's own slider position is restored. */
+  const DEFAULT_VOLUME = 0.35;
+
+  const MUSIC_KEY = 'bt-panel-background-music';
+  const VOLUME_KEY = 'bt-panel-music-volume';
+
+  const readStored = (key) => {
+    try { return window.localStorage.getItem(key); } catch { return null; }
+  };
+  const writeStored = (key, value) => {
+    try { window.localStorage.setItem(key, value); } catch { /* preference just won't persist */ }
+  };
+
+  /* ------------------------------------------------------------------
+     Discord links (footer owner link on every page)
+     ------------------------------------------------------------------ */
+  const discordLinks = document.querySelectorAll('[data-discord-invite]');
+  if (discordLinks.length) {
+    discordLinks.forEach((link) => { link.href = DISCORD_INVITE; });
+    if (/REPLACE-ME/i.test(DISCORD_INVITE) && typeof console !== 'undefined') {
+      console.warn('[BT Panel] The Discord invite is still the placeholder. Set DISCORD_INVITE at the top of site.js.');
+    }
+  }
+
+  /* ===================================================================
+     Hero background video
+     =================================================================== */
   const heroVideo = document.getElementById('hero-video');
   if (heroVideo) {
     // Background video: muted autoplay loop that keeps itself running 24/7.
@@ -47,6 +80,13 @@
     }
   }
 
+  /* ===================================================================
+     Launch countdown
+     =================================================================== */
+  const launchDate = new Date('2027-03-07T00:00:00');
+  const countdown = document.getElementById('countdown');
+  const liveMessage = document.getElementById('launch-live');
+
   if (countdown) {
     const units = {
       days: document.getElementById('days'),
@@ -82,6 +122,9 @@
     if (launchDate.getTime() > Date.now()) timer = window.setInterval(updateCountdown, 1000);
   }
 
+  /* ===================================================================
+     Contact form (preview only — nothing is sent or stored)
+     =================================================================== */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (event) => {
@@ -95,51 +138,106 @@
     });
   }
 
+  /* ===================================================================
+     Background music + volume control
+     =================================================================== */
   const soundButton = document.getElementById('sound-toggle');
   const backgroundMusic = document.getElementById('background-music');
-  if (soundButton && backgroundMusic) {
-    const soundLabel = soundButton.querySelector('[data-sound-label]');
-    const preferenceKey = 'bt-panel-background-music';
-    let savedPreference = null;
-    try {
-      savedPreference = window.localStorage.getItem(preferenceKey);
-    } catch {
-      // Audio controls remain usable if browser storage is unavailable.
-    }
+  const volumeSlider = document.getElementById('volume-slider');
+  const volumeReadout = document.querySelector('[data-volume-value]');
+
+  if (backgroundMusic) {
+    const clampVolume = (value) => Math.min(1, Math.max(0, value));
+
+    let volume = clampVolume(Number.parseFloat(readStored(VOLUME_KEY)));
+    if (!Number.isFinite(volume)) volume = DEFAULT_VOLUME;
+
+    // Apply the level every time it matters: some browsers reset it when a
+    // fresh media element is loaded, and `preload="none"` defers that load.
+    const applyVolume = () => {
+      if (Number.isFinite(volume)) backgroundMusic.volume = volume;
+    };
+
+    const renderVolume = () => {
+      const percent = Math.round(volume * 100);
+      if (volumeSlider) {
+        volumeSlider.value = String(percent);
+        volumeSlider.setAttribute('aria-valuetext', `${percent} percent`);
+      }
+      if (volumeReadout) volumeReadout.textContent = `${percent}%`;
+    };
 
     const renderSoundState = (isPlaying) => {
+      if (!soundButton) return;
       soundButton.setAttribute('aria-pressed', String(isPlaying));
       soundButton.setAttribute('aria-label', isPlaying ? 'Turn background music off' : 'Turn background music on');
+      const soundLabel = soundButton.querySelector('[data-sound-label]');
       if (soundLabel) soundLabel.textContent = isPlaying ? 'Music on' : 'Music off';
     };
-    const savePreference = (value) => {
-      try {
-        window.localStorage.setItem(preferenceKey, value);
-      } catch {
-        // Playback continues even when the preference cannot be persisted.
-      }
-    };
 
-    backgroundMusic.volume = 0.18;
-    renderSoundState(false);
-    if (savedPreference !== 'off') {
-      backgroundMusic.play().then(() => renderSoundState(true)).catch(() => renderSoundState(false));
+    applyVolume();
+    renderVolume();
+    ['loadedmetadata', 'durationchange', 'play', 'playing', 'volumechange'].forEach((name) =>
+      backgroundMusic.addEventListener(name, applyVolume));
+
+    const play = () => backgroundMusic.play()
+      .then(() => renderSoundState(true))
+      .catch(() => renderSoundState(false));
+
+    if (readStored(MUSIC_KEY) !== 'off') play();
+    else renderSoundState(false);
+
+    if (soundButton) {
+      soundButton.addEventListener('click', () => {
+        if (!backgroundMusic.paused) {
+          backgroundMusic.pause();
+          writeStored(MUSIC_KEY, 'off');
+          renderSoundState(false);
+          return;
+        }
+        backgroundMusic.play().then(() => {
+          writeStored(MUSIC_KEY, 'on');
+          renderSoundState(true);
+        }).catch(() => renderSoundState(false));
+      });
     }
 
-    soundButton.addEventListener('click', () => {
-      if (!backgroundMusic.paused) {
-        backgroundMusic.pause();
-        savePreference('off');
-        renderSoundState(false);
-        return;
-      }
-      backgroundMusic.play().then(() => {
-        savePreference('on');
-        renderSoundState(true);
-      }).catch(() => renderSoundState(false));
+    if (volumeSlider) {
+      const commitVolume = (rawValue) => {
+        const next = clampVolume(Number.parseFloat(rawValue) / 100);
+        if (!Number.isFinite(next)) return;
+        volume = next;
+        applyVolume();
+        renderVolume();
+        writeStored(VOLUME_KEY, String(volume));
+      };
+      // Live feedback while dragging, persisted once the drag ends.
+      volumeSlider.addEventListener('input', () => {
+        const next = clampVolume(Number.parseFloat(volumeSlider.value) / 100);
+        if (!Number.isFinite(next)) return;
+        volume = next;
+        applyVolume();
+        const percent = Math.round(volume * 100);
+        volumeSlider.setAttribute('aria-valuetext', `${percent} percent`);
+        if (volumeReadout) volumeReadout.textContent = `${percent}%`;
+      });
+      volumeSlider.addEventListener('change', () => commitVolume(volumeSlider.value));
+    }
+
+    // Keep the level in sync if it is changed in another tab.
+    window.addEventListener('storage', (event) => {
+      if (event.key !== VOLUME_KEY || event.newValue === null) return;
+      const next = clampVolume(Number.parseFloat(event.newValue));
+      if (!Number.isFinite(next)) return;
+      volume = next;
+      applyVolume();
+      renderVolume();
     });
   }
 
+  /* ===================================================================
+     Card theme: black / white
+     =================================================================== */
   const cardButton = document.getElementById('card-toggle');
   if (cardButton) {
     const cardLabel = cardButton.querySelector('[data-card-label]');
@@ -154,7 +252,7 @@
     cardButton.addEventListener('click', () => {
       const next = root.getAttribute('data-cards') === 'white' ? 'black' : 'white';
       root.setAttribute('data-cards', next);
-      try { window.localStorage.setItem('bt-panel-card-style', next); } catch { /* choice just won't persist */ }
+      writeStored('bt-panel-card-style', next);
       renderCards();
     });
   }
