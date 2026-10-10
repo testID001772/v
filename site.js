@@ -240,4 +240,26 @@
       renderCards();
     });
   }
+
+  /* ===================================================================
+     Auto background music (drone). Tries to start on load; browsers
+     block sound until the visitor interacts, so it also starts on the
+     first click or key press.
+     =================================================================== */
+  const siteMusic = document.getElementById('site-music');
+  if (siteMusic) {
+    siteMusic.volume = 0.35;
+    const startMusic = () => {
+      const request = siteMusic.play();
+      if (request && typeof request.catch === 'function') {
+        request.then(() => {
+          ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => document.removeEventListener(ev, startOnGesture));
+        }).catch(() => {});
+      }
+    };
+    const startOnGesture = () => { if (siteMusic.paused) startMusic(); };
+    startMusic();
+    ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => document.addEventListener(ev, startOnGesture, { passive: true }));
+  }
+
 })();
