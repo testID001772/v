@@ -647,3 +647,12 @@ h1, h2, h3, p { overflow-wrap: break-word; }
 /* Music toggle icon (SVG music note) */
 .sound-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
 .sound-icon { width: 14px; height: 14px; flex: 0 0 auto; }
+
+/* Music toggle: filled dark pill, matching the mic / Create buttons */
+.sound-toggle {
+  border: 0; border-radius: 999px;
+  background: rgba(255, 255, 255, .09); color: var(--white);
+}
+.sound-toggle:hover, .sound-toggle[aria-pressed="true"] {
+  background: rgba(255, 255, 255, .16); border: 0; color: var(--white);
+}
